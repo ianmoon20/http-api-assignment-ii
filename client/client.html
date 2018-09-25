@@ -8,7 +8,9 @@
   <script type="text/babel">
     const parseJSON = (xhr, content) => {
         const obj = JSON.parse(xhr.response);
+        
         console.dir(obj);
+        
         
         if(obj.message) {
             const p = document.createElement('p');
@@ -47,10 +49,10 @@
                 break;
         }
         
-        if(parseResponse) {
+        if(parseResponse && xhr.status != 204) {
             parseJSON(xhr, content);
-        } else {
-            console.log('received');
+        } else if(xhr.status != 204) {
+            console.log('Head Request Recieved');
         }
     };
 
@@ -69,7 +71,7 @@
         
         xhr.setRequestHeader('Accept', 'application/json');
         
-        xhr.onload = () => handleResponse(xhr);
+        xhr.onload = () => handleResponse(xhr, true);
         
         const formData = `name=${nameField.value}&age=${ageField.value}`;
         

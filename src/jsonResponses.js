@@ -12,11 +12,7 @@ const respond = (request, response, status, object) => {
 };
 
 const respondMeta = (request, response, status) => {
-  const headers = {
-    'Content-Type': 'application/json',
-  };
-
-  response.writeHead(status, headers);
+  response.writeHead(status, { 'Content-Type': 'application/json' });
   response.end();
 };
 
@@ -43,7 +39,7 @@ const addUser = (request, response, body) => {
   // If either are missing send back a 400 error
   if (!body.name || !body.age) {
     responseJSON.id = 'missingParams';
-    respond(request, response, 400, responseJSON);
+    return respond(request, response, 400, responseJSON);
   }
 
   // Assume we have a successful creation

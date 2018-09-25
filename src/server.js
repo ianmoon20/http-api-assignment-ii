@@ -17,7 +17,7 @@ const onRequest = (request, response) => {
   const parsedURL = url.parse(request.url);
   switch (request.method) {
     case 'POST':
-      if (urlStruct[parsedURL.pathname]) {
+      if (parsedURL.pathname === '/addUser') {
         const res = response;
         const body = [];
 
