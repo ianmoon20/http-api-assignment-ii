@@ -43,7 +43,7 @@ const addUser = (request, response, body) => {
   // If either are missing send back a 400 error
   if (!body.name || !body.age) {
     responseJSON.id = 'missingParams';
-    return respond(request, response, 400, responseJSON);
+    respond(request, response, 400, responseJSON);
   }
 
   // Assume we have a successful creation
